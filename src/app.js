@@ -1,4 +1,8 @@
-require("dotenv").config();
+
+require('dotenv').config({path : '.env'});
+
+// console.log(process.env.PORT);
+
 let express = require( 'express' );
 let fs = require( 'fs' );
 let app = express();
@@ -8,10 +12,10 @@ let app = express();
 let server = require( 'https' );
 // var server = https.createServer(router);
 
-app.listen(process.env.PORT || 3005, () => {
+app.listen(process.env.PORT1 , () => {
   console.log(
-    `listening on port: ${process.env.PORT || 3005}, http://10.168.2.73:${
-      process.env.PORT || 3005
+    `listening on port: ${process.env.PORT1 }, http://10.168.2.73:${
+      process.env.PORT1 
     }`
   );
 });
@@ -21,10 +25,10 @@ const options = {
   cert: fs.readFileSync('/home/mahesh/Downloads/AI_Realated/MRD_Use_case_3/Video-Call-App-NodeJS/src/cert.pem')
 };
 
-let load = server.createServer(options, app).listen(process.env.PORT || 3006, () => {
+let load = server.createServer(options, app).listen(process.env.PORT2 , () => {
   console.log(
-    `listening on port: ${process.env.PORT || 3006}, https://10.168.2.73:${
-      process.env.PORT || 3006
+    `listening on port: ${process.env.PORT2 }, https://10.168.2.73:${
+      process.env.PORT2
     }`
   );
 });

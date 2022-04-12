@@ -14,22 +14,18 @@ let server = require( 'https' );
 
 app.listen(process.env.PORT1 , () => {
   console.log(
-    `listening on port: ${process.env.PORT1 }, http://10.168.2.73:${
-      process.env.PORT1 
-    }`
+    `listening on port: ${process.env.PORT1 }`
   );
 });
 
 const options = {
-  key: fs.readFileSync('/home/mahesh/Downloads/AI_Realated/MRD_Use_case_3/Video-Call-App-NodeJS/src/key.pem'),
-  cert: fs.readFileSync('/home/mahesh/Downloads/AI_Realated/MRD_Use_case_3/Video-Call-App-NodeJS/src/cert.pem')
+  key: fs.readFileSync('./src/key.pem'),
+  cert: fs.readFileSync('./src/cert.pem')
 };
 
 let load = server.createServer(options, app).listen(process.env.PORT2 , () => {
   console.log(
-    `listening on port: ${process.env.PORT2 }, https://10.168.2.73:${
-      process.env.PORT2
-    }`
+    `listening on port: ${process.env.PORT2 }`
   );
 });
 

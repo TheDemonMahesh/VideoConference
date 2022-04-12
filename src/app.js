@@ -6,30 +6,30 @@ require('dotenv').config({path : '.env'});
 let express = require( 'express' );
 let fs = require( 'fs' );
 let app = express();
-// let server = require( 'http' ).Server( app );
+let server = require( 'http' ).Server( app );
 
 // var router = express();
-let server = require( 'https' );
+// let server = require( 'https' );
 // var server = https.createServer(router);
 
-app.listen(process.env.PORT1 , () => {
-  console.log(
-    `listening on port: ${process.env.PORT1 }`
-  );
-});
+// app.listen(process.env.PORT1 , () => {
+//   console.log(
+//     `listening on port: ${process.env.PORT1 }`
+//   );
+// });
 
 const options = {
   key: fs.readFileSync('./src/key.pem'),
   cert: fs.readFileSync('./src/cert.pem')
 };
 
-let load = server.createServer(options, app).listen(process.env.PORT2 , () => {
-  console.log(
-    `listening on port: ${process.env.PORT2 }`
-  );
-});
+// let load = server.createServer(options, app).listen(process.env.PORT2 , () => {
+//   console.log(
+//     `listening on port: ${process.env.PORT2 }`
+//   );
+// });
 
-let io = require( 'socket.io' )( load );
+let io = require( 'socket.io' )( server );
 let stream = require( './ws/stream' );
 let path = require( 'path' );
 let favicon = require( 'serve-favicon' );
@@ -48,12 +48,12 @@ io.of( '/stream' ).on( 'connection', stream );
 
 
 
-// server.listen(process.env.PORT || 3006, () => {
-//     console.log(
-//       `listening on port: ${process.env.PORT || 3006}, http://10.168.2.73:${
-//         process.env.PORT || 3006
-//       }`
-//     );
-//   });
+server.listen(process.env.PORT || 3006, () => {
+    console.log(
+      `listening on port: ${process.env.PORT || 3006}, http://10.168.2.73:${
+        process.env.PORT || 3006
+      }`
+    );
+  });
 
 // server.listen( 3000 );
